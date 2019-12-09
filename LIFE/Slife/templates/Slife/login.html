@@ -1,0 +1,33 @@
+{% extends "Slife/base.html" %}
+{% load bootstrap4 %}
+<title>{% block title %}user login{% endblock %}</title>
+{% block content %}
+<center>{% bootstrap_messages %}</center>
+<br>
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+            <div class="card my-5">
+
+                <div class="card-header text-center">
+                   Login
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <input type="submit" class="btn btn-success text-center w-100 mb-3" value="Login">
+                     <center><a href="{% url 'Slife:password_reset' %}" class="small">Forgot Password ?</a></center>
+                       <center> <a href="{% url 'Slife:register' %}" class="small">Register</a></center>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

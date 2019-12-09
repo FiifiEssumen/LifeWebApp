@@ -1,0 +1,48 @@
+{% extends "Slife/base.html" %}
+{% block title %}Candidates{% endblock  %}
+{% block content %}
+<center>
+    <br>
+<h4>Candidates are based on the number of views for the portal.</h4>
+</center>
+<ol type="1">
+    <div class="row">
+{% for c in Slife %}
+        {% if c.views >= 20 %}
+    <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+
+                <div class="card-body">
+                     <h4><li>
+                  <h4 class="card-title">
+                       <img src="/media/{{c.image}}" width="300" height="200">
+                    <a href="{% url 'Slife:detail' c.slug %} ">Name:{{c.name}}</a>
+                  </h4>
+                       <h5>Votes: {{ c.vote }} votes</h5>
+                    <h5>Views: {{ c.views }} views</h5>
+
+<!-- 
+                    <h5>Website:  <a href="{{ c.website }}">{{ c.website }}</a></h5>
+                  <h5>Location: {{ c.location }}</h5> -->
+                    <h5>category: {{ c.category }}</h5>
+                <a href="{% url 'Slife:detail' c.slug %}" class="btn btn-primary">View More</a>
+              </li></h4>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+                </div>
+              </div>
+            </div>
+        {% endif %}
+{% empty %}
+    <div class="card w-100">
+    <div class="card-body">
+        <h4>Item not available</h4>
+    </div>
+    </div>
+
+{% endfor %}
+    </div>
+</ol>
+{% endblock %}
+

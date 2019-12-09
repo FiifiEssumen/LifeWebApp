@@ -1,0 +1,20 @@
+
+{% extends "Slife/base.html" %}
+{% load bootstrap4 %}
+<title>{% block title %}{{title}}{% endblock %}</title>
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+            <div class="card my-5">
+                <b>&nbsp &nbsp All Lists({{categories|length}})</b>
+                 {% for category in categories %}
+        <b> <a href="{% url 'Slife:options' category.slug %}" class="list-group-item">{{category.name}} ({{category.option_set.all|length}})</a></b>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

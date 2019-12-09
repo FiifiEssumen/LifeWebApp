@@ -1,0 +1,84 @@
+{% extends "Slife/base.html" %}
+ <title>{% block title %}{{title}}{% endblock title%}</title>
+{% load bootstrap4 %}
+{% block content %}
+<center><br>
+     <ol type="1">
+          <center>{% bootstrap_messages %}</center>
+    {% for option in options %}
+
+     <div class="col-lg-6 col-md-6 mb-6">
+              <div class="card h-100">
+                <div class="card-body">
+                    <b><li>
+                  <img src="/media/{{option.image}}" width="400" height="300">
+                 <h4>{{option.name}}
+                  </h4>
+                  <h5 class="card-text">{{ option.details}}</h5>
+                      <h5>{{ option.votes }} votes</h5>
+                       {% if option.has_voted %}
+                             <p class="btn btn-success">Voted</p>
+                       {% else %}
+                            
+                            <form action="{% url 'Slife:vote' option.slug %}" method="post" class="form-disable">
+                           {% csrf_token %}
+                       <input type="submit" class="btn btn-info" value="Vote" data-submit-value="Voted"> 
+                       </form>
+                       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                       <script src="js/global.js"></script>
+                       <!-- <script src="jquery-3.4.1.min.js"></script> -->
+                       {% endif %}
+
+                         </li></b>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted"></small>
+                </div>
+
+
+              </div>
+                </div>
+         {% empty %}
+    <div class="card w-100">
+    <div class="card-body">
+        <h4>Item not available</h4>
+    </div>
+    </div>
+
+    {% endfor %}
+     </ol>
+
+<!-- <h3>{{ category.comment_set.all|length}} comments</h3>
+    <hr>
+            {% for c in category.comment_set.all %}
+                  <div class="col-lg-6 col-md-6 mb-6">
+                     <div class="card-footer text-muted">
+                         <b>{{ c.user.username}} </b>&nbsp {{c.created|timesince}} ago
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{ c.comment}}</p>
+              </div>
+
+            </div>
+            {% endfor %}
+
+    <hr>
+   <div class="col-lg-6 col-md-6 mb-6">
+            <form method="post" action="/Slife/best-trekking-destination-in-nepal/comment/">
+                {% csrf_token %}
+                <div class="form-group"><label for="id_comment"><h5>Add a Comment </h5></label><textarea name="comment" cols="40" rows="10" class="form-control" placeholder="Comment" title="" required id="id_comment">
+</textarea></div>
+            <input type="submit" class="btn btn-success" value="Post Comment">
+            </form>
+     </div>
+
+ -->
+
+</center>
+
+
+
+
+{% endblock content%}
+
+    
